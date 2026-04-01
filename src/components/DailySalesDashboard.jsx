@@ -9,6 +9,7 @@ import {
   Legend,
   CartesianGrid
 } from "recharts";
+import { BASE_URL } from "../services/api";
 // ✅ Auto-categorization function
 
 function getCategory(productName) {
@@ -40,7 +41,7 @@ function DailySalesDashboard() {
 
   // Fetch sales data
   const fetchSales = () => {
-    fetch("http://localhost:8080/sales")
+    fetch(`${BASE_URL}/sales`)
       .then(res => res.json())
       .then(sales => {
         const dayMap = {};
@@ -68,26 +69,17 @@ function DailySalesDashboard() {
   const handleSell = (product) => {
     const today = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
 
-    axios.post("http://localhost:8080/sales/sell", {
+    axios.post(`${BASE_URL}/sales/sell`, {
       date: today,
       product: product,
       quantity: 1
     })
-
       .then(() => {
         fetchSales(); // refresh chart after sale
       })
       .catch(err => {
         console.error("Error updating sale:", err);
       });
-
-    .then(() => {
-      fetchSales(); // refresh chart after sale
-    })
-    .catch(err => {
-      console.error("Error updating sale:", err);
-    });
-
   };
 
   return (

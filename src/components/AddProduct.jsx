@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import axios from "axios";  
 import { useNavigate } from "react-router-dom"; 
+import { BASE_URL } from "../services/api";
 
 function AddProduct() {
   const [product, setProduct] = useState({
@@ -20,14 +21,14 @@ function AddProduct() {
 
   const submitProduct = useCallback((e) => {
     e.preventDefault();
-    fetch("http://localhost:8080/products")
+    fetch(`${BASE_URL}/products`)
     .then(res => res.json())
     .then(data => {
       const exists = data.some(p => p.name.toLowerCase() === product.name.toLowerCase());
       if (exists) {
         alert("Product already exists!");
       } else {
-        axios.post("http://localhost:8080/products", product)  
+        axios.post(`${BASE_URL}/products`, product)  
       .then(() => {
         alert("Product Added");
         navigate("/products");

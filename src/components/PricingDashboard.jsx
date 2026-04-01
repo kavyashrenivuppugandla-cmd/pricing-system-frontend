@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+import { BASE_URL } from "../services/api";
 
 // Auto-categorization function
 function getCategory(productName) {
@@ -29,7 +30,7 @@ function PricingDashboard() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/products")
+    fetch(`${BASE_URL}/products`)
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) {

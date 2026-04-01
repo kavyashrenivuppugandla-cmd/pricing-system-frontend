@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
+import { BASE_URL } from "../services/api";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -7,7 +8,7 @@ function ProductList() {
   const [sortOrder, setSortOrder] = useState("asc"); // ascending by default
 
   useEffect(() => {
-    fetch("http://localhost:8080/products")
+    fetch(`${BASE_URL}/products`)
       .then(res => res.json())
       .then(data => {
         if (!Array.isArray(data)) {
@@ -28,12 +29,12 @@ function ProductList() {
   }, []);
 
   const handleSale = (id) => {
-    fetch(`http://localhost:8080/sales?productId=${id}&quantity=1`, { method: "POST" })
+    fetch(`${BASE_URL}/sales?productId=${id}&quantity=1`, { method: "POST" })
       .then(() => window.location.reload());
   };
 
   const handleInventoryUpdate = (id, newInventory) => {
-    fetch(`http://localhost:8080/products/${id}/inventory?inventory=${newInventory}`, {
+    fetch(`${BASE_URL}/products/${id}/inventory?inventory=${newInventory}`, {
       method: "PUT"
     })
       .then(res => res.json())
