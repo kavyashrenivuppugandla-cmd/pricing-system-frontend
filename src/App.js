@@ -1,21 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
 import ProductList from "./components/ProductList";
 import AddProduct from "./components/AddProduct";
 import PricingDashboard from "./components/PricingDashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import "./App.css";
-
-
 function App() {
-
   return (
-
     <Router>
       <div className="app-container">
         {/* Sidebar */}
@@ -37,13 +30,11 @@ function App() {
             </ul>
           </nav>
         </aside>
-
         <div className="app-main">
           {/* Header */}
           <header className="app-header">
             <h1>Dynamic Pricing Recommendation System</h1>
           </header>
-
           {/* Main Content Area */}
           <main className="app-content">
             <Routes>
@@ -52,7 +43,6 @@ function App() {
               <Route path="/analytics" element={<PricingDashboard />} />
             </Routes>
           </main>
-
           {/* Footer */}
           <footer className="app-footer">
             <p>&copy; {new Date().getFullYear()} PricePro. All rights reserved. Version 1.0.0</p>
@@ -60,10 +50,7 @@ function App() {
         </div>
       </div>
     </Router>
-
-
     <div>
-
       <h1 className="text-center mt-3">
         Dynamic Pricing Recommendation System
       </h1>
@@ -75,10 +62,6 @@ function App() {
         </Routes>
       </Router>
     </div>
-
-
   );
-
 }
-
 export default App;
