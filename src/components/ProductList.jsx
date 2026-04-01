@@ -29,16 +29,13 @@ function ProductList() {
     fetch(`http://localhost:8080/products/${id}/inventory?inventory=${newInventory}`, {
       method: "PUT"
     })
-      .then(() => {
-        const product = products.find(p => p.id === id);
-        if (!product) return;
-
-        setProducts(products.map(p => p.id === id ? { ...p, inventory: newInventory } : p));
-
-        if (Number(newInventory) === 0) {
-          alert(`Out of stock: ${product.name} is now out of stock!`);
-        } else if (Number(newInventory) <= 1) {
-          alert(`Low stock alert: ${product.name} has only ${newInventory} left!`);
+      .then(res => res.json())
+      .then(updatedProduct => {
+        setProducts(products.map(p => p.id === id ? updatedProduct : p));
+        if (Number(updatedProduct.inventory) === 0) {
+          alert(`Out of stock: ${updatedProduct.name} is now out of stock!`);
+        } else if (Number(updatedProduct.inventory) < 2) {
+          alert(`Low stock alert: ${updatedProduct.name} has only ${updatedProduct.inventory} left!`);
         }
       })
       .catch(err => console.error("Failed to update inventory", err));

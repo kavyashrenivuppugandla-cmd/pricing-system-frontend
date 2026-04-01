@@ -9,8 +9,8 @@ import {
   Legend,
   CartesianGrid
 } from "recharts";
+// ✅ Auto-categorization function
 
-// Auto-categorization function
 function getCategory(productName) {
   if (!productName || typeof productName !== "string") {
     return "Miscellaneous";
@@ -19,11 +19,11 @@ function getCategory(productName) {
   const name = productName.toLowerCase();
 
   const keywordMap = {
+
     Electronics: ["laptop", "ipad", "mobile", "headset", "tv", "ac"],
     Fashion: ["shoes", "shirt", "jeans", "dress"],
     Groceries: ["milk", "bread", "chocolate", "rice"],
     Furniture: ["table", "chair", "sofa", "bed"],
-
   };
 
   for (const category in keywordMap) {
@@ -51,7 +51,7 @@ function DailySalesDashboard() {
             dayMap[key] = { date: key };
           }
           const category = getCategory(s.product);
-          // Count items sold category-wise
+
           dayMap[key][category] = (dayMap[key][category] || 0) + s.quantity;
         });
 
@@ -73,12 +73,21 @@ function DailySalesDashboard() {
       product: product,
       quantity: 1
     })
+
       .then(() => {
         fetchSales(); // refresh chart after sale
       })
       .catch(err => {
         console.error("Error updating sale:", err);
       });
+
+    .then(() => {
+      fetchSales(); // refresh chart after sale
+    })
+    .catch(err => {
+      console.error("Error updating sale:", err);
+    });
+
   };
 
   return (
@@ -93,7 +102,9 @@ function DailySalesDashboard() {
         <button onClick={() => handleSell("Ipad")}>Sell Ipad</button>
         <button onClick={() => handleSell("Dairy Milk")}>Sell Dairy Milk</button>
         <button onClick={() => handleSell("Table")}>Sell Table</button>
+
         <button onClick={() => handleSell("Pen")}>Sell Pen</button>
+
       </div>
 
       {/* Bar Chart grouped by category */}
@@ -107,6 +118,10 @@ function DailySalesDashboard() {
         <Bar dataKey="Fashion" fill="#00C49F" />
         <Bar dataKey="Groceries" fill="#FFBB28" />
         <Bar dataKey="Furniture" fill="#FF8042" />
+ 
+
+
+        <Bar dataKey="Miscellaneous" fill="#aa46be" />
 
       </BarChart>
     </div>

@@ -10,7 +10,6 @@
   --sidebar-bg: #2c3e50;
   --sidebar-text: #ecf0f1;
 }
-
 body {
   margin: 0;
   padding: 0;
@@ -18,13 +17,11 @@ body {
   color: var(--text-color) !important;
   font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
-
 /* Layout Structure */
 .app-container {
   display: flex;
   min-height: 100vh;
 }
-
 /* Sidebar Styling */
 .app-sidebar {
   width: 260px;
@@ -34,34 +31,28 @@ body {
   flex-direction: column;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
-
 .sidebar-header {
   padding: 24px 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-
 .logo-title {
   margin: 0;
   font-size: 1.5rem;
   font-weight: 700;
   color: #ffffff;
 }
-
 .sidebar-nav {
   flex: 1;
   padding: 20px 0;
 }
-
 .sidebar-nav ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-
 .sidebar-nav li {
   margin-bottom: 5px;
 }
-
 .sidebar-nav a {
   display: block;
   padding: 12px 20px;
@@ -70,19 +61,16 @@ body {
   font-weight: 500;
   transition: background-color 0.2s, color 0.2s;
 }
-
 .sidebar-nav a:hover {
   background-color: var(--accent-color);
   color: #ffffff;
 }
-
 /* Main Layout */
 .app-main {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
-
 /* Header Styling */
 .app-header {
   background-color: var(--card-bg);
@@ -91,21 +79,18 @@ body {
   display: flex;
   align-items: center;
 }
-
 .app-header h1 {
   margin: 0;
   font-size: 1.25rem;
   font-weight: 600;
   color: var(--text-color);
 }
-
 /* Main Content Styling */
 .app-content {
   flex: 1;
   padding: 30px;
   overflow-y: auto;
 }
-
 /* Footer Styling */
 .app-footer {
   background-color: var(--bg-color);
@@ -115,9 +100,7 @@ body {
   color: #7f8c8d;
   border-top: 1px solid #eaeaea;
 }
-
 /* Content Components Global Overrides / Utilities */
-
 /* Cards */
 .card,
 .border {
@@ -126,7 +109,6 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
   border: none !important;
 }
-
 /* Buttons */
 .btn-primary,
 .btn-info {
@@ -136,32 +118,26 @@ body {
   border-radius: 4px;
   transition: background-color 0.2s;
 }
-
 .btn-primary:hover,
 .btn-info:hover {
   background-color: var(--accent-hover) !important;
   border-color: var(--accent-hover) !important;
 }
-
 /* Positive & Alerts */
 .text-success,
 .text-positive {
   color: var(--positive-color) !important;
 }
-
 .bg-success {
   background-color: var(--positive-color) !important;
 }
-
 .text-danger,
 .text-alert {
   color: var(--alert-color) !important;
 }
-
 .bg-danger {
   background-color: var(--alert-color) !important;
 }
-
 /* Tables */
 .table {
   width: 100%;
@@ -169,25 +145,21 @@ body {
   margin-bottom: 1rem;
   color: var(--text-color) !important;
 }
-
 .table th,
 .table td {
   padding: 12px 15px;
   vertical-align: top;
   border-top: 1px solid #dee2e6;
 }
-
 .table thead th {
   vertical-align: bottom;
   border-bottom: 2px solid #dee2e6;
   background-color: #f8f9fa;
   font-weight: 600;
 }
-
 .table-striped tbody tr:nth-of-type(odd) {
   background-color: rgba(0, 0, 0, 0.02) !important;
 }
-
 /* --- Add Product Page Specific Styles --- */
 .add-product-container {
   display: flex;
@@ -198,7 +170,6 @@ body {
   padding: 40px 20px;
   border-radius: 12px;
 }
-
 .add-product-card {
   background-color: #ffffff;
   padding: 40px;
@@ -207,7 +178,6 @@ body {
   width: 100%;
   max-width: 550px;
 }
-
 .add-product-header {
   text-align: center;
   margin-bottom: 10px;
@@ -215,18 +185,15 @@ body {
   font-weight: 700;
   font-size: 1.8rem;
 }
-
 .add-product-subtitle {
   text-align: center;
   color: #7f8c8d;
   margin-bottom: 30px;
   font-size: 0.95rem;
 }
-
 .form-group {
   margin-bottom: 24px;
 }
-
 .modern-label {
   display: block;
   margin-bottom: 8px;
@@ -234,7 +201,6 @@ body {
   color: #34495e;
   font-size: 0.95rem;
 }
-
 .modern-input {
   width: 100%;
   padding: 14px 15px;
@@ -246,14 +212,12 @@ body {
   color: #2c3e50;
   box-sizing: border-box; /* ensure padding is inside width */
 }
-
 .modern-input:focus {
   outline: none;
   border-color: #3498db;
   background-color: #ffffff;
   box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
 }
-
 .modern-btn {
   width: 100%;
   padding: 15px;
@@ -268,12 +232,10 @@ body {
   box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
   margin-top: 10px;
 }
-
 .modern-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
 }
-
 /* --- Shared/List Page Styles --- */
 .large-card {
   background-color: #ffffff;
@@ -283,7 +245,6 @@ body {
   width: 100%;
   max-width: 1050px;
 }
-
 .action-toolbar {
   display: flex;
   justify-content: space-between;
@@ -292,13 +253,11 @@ body {
   flex-wrap: wrap;
   gap: 15px;
 }
-
 .toolbar-group {
   display: flex;
   align-items: center;
   gap: 15px;
 }
-
 .modern-select {
   padding: 10px 35px 10px 15px;
   border: 1px solid #e0e0e0;
@@ -314,25 +273,21 @@ body {
   background-size: 10px auto;
   transition: all 0.3s ease;
 }
-
 .modern-select:focus {
   outline: none;
   border-color: #3498db;
   box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
 }
-
 .modern-table-wrapper {
   overflow-x: auto;
   border-radius: 8px;
   border: 1px solid #edf2f7;
 }
-
 .modern-table {
   width: 100%;
   border-collapse: collapse;
   background-color: white;
 }
-
 .modern-table th {
   background-color: #f8fafc;
   color: #4a5568;
@@ -344,26 +299,21 @@ body {
   border-bottom: 2px solid #edf2f7;
   text-align: left;
 }
-
 .modern-table td {
   padding: 16px;
   border-bottom: 1px solid #edf2f7;
   color: #2d3748;
   vertical-align: middle;
 }
-
 .modern-table tbody tr {
   transition: background-color 0.2s ease;
 }
-
 .modern-table tbody tr:hover {
   background-color: #f7fafc;
 }
-
 .modern-table tbody tr:last-child td {
   border-bottom: none;
 }
-
 .btn-sm-modern {
   padding: 8px 16px;
   background: linear-gradient(135deg, #2ecc71, #27ae60);
@@ -376,7 +326,6 @@ body {
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
 }
-
 .btn-sm-modern:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(46, 204, 113, 0.4);
