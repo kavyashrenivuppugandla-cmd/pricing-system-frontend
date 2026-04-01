@@ -29,7 +29,7 @@ function ProductList() {
     fetch(`http://localhost:8080/products/${id}/inventory?inventory=${newInventory}`, {
       method: "PUT"
     })
-<<<<<<< HEAD
+
       .then(() => {
         const product = products.find(p => p.id === id);
         if (!product) return;
@@ -43,7 +43,7 @@ function ProductList() {
         }
       })
       .catch(err => console.error("Failed to update inventory", err));
-=======
+
       .then(res => res.json())
       .then(updatedProduct => {
         setProducts(products.map(p => p.id === id ? updatedProduct : p));
@@ -54,7 +54,7 @@ function ProductList() {
 }
 
       });
->>>>>>> 882b4c8 (first commit)
+
   };
 
   // Filter products by search term
@@ -78,7 +78,7 @@ function ProductList() {
   });
 
   return (
-<<<<<<< HEAD
+
     <div className="add-product-container" style={{ alignItems: 'flex-start' }}>
       <div className="large-card">
         <h2 className="add-product-header" style={{ textAlign: 'left', marginBottom: '25px', fontSize: '1.6rem' }}>📋 Product Inventory</h2>
@@ -189,7 +189,7 @@ function ProductList() {
           </table>
         </div>
       </div>
-=======
+
     <div className="container mt-3">
       <h3>Product List</h3>
 
@@ -266,7 +266,7 @@ function ProductList() {
           ))}
         </tbody>
       </table>
->>>>>>> 882b4c8 (first commit)
+
     </div>
   );
 }
