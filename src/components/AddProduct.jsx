@@ -43,7 +43,7 @@ function AddProduct() {
   };
 
   return (
-<<<<<<< HEAD
+
     <div className="add-product-container">
       <div className="add-product-card">
         <h2 className="add-product-header">📦 Add New Product</h2>
@@ -92,7 +92,7 @@ function AddProduct() {
           </button>
         </form>
       </div>
-=======
+
     <div className="container mt-4">
       <h2>Add Product</h2>
       <form onSubmit={submitProduct}>
@@ -127,7 +127,7 @@ function AddProduct() {
           Add Product
         </button>
       </form>
->>>>>>> 882b4c8 (first commit)
+
     </div>
   );
 }
