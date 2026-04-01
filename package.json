@@ -15,11 +15,11 @@
     "react-dom": "^19.2.4",
     "react-router-dom": "^7.13.2",
     "react-scripts": "5.0.1",
-<<<<<<< HEAD
+
     "recharts": "^3.8.1",
-=======
+
     "recharts": "^3.8.0",
->>>>>>> 882b4c8 (first commit)
+
     "web-vitals": "^2.1.4"
   },
   "scripts": {
