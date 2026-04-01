@@ -12,8 +12,8 @@ function ProductList() {
       .then(data => {
         const unique = Array.isArray(data)
           ? data.filter((item, index, self) =>
-              index === self.findIndex(p => p.name === item.name)
-            )
+            index === self.findIndex(p => p.name === item.name)
+          )
           : [];
         setProducts(unique);
       })
@@ -32,9 +32,9 @@ function ProductList() {
       .then(() => {
         const product = products.find(p => p.id === id);
         if (!product) return;
-        
+
         setProducts(products.map(p => p.id === id ? { ...p, inventory: newInventory } : p));
-        
+
         if (Number(newInventory) === 0) {
           alert(`Out of stock: ${product.name} is now out of stock!`);
         } else if (Number(newInventory) <= 1) {
@@ -129,25 +129,25 @@ function ProductList() {
                   <td><strong>{p.name}</strong></td>
                   <td>₹{p.basePrice}</td>
                   <td>
-                    <span style={{ 
+                    <span style={{
                       display: 'inline-block',
-                      padding: '4px 10px', 
-                      borderRadius: '12px', 
+                      padding: '4px 10px',
+                      borderRadius: '12px',
                       backgroundColor: p.inventory <= 1 ? '#ffe3e3' : p.inventory < 5 ? '#fff3cd' : '#e3f2fd',
                       color: p.inventory <= 1 ? '#c0392b' : p.inventory < 5 ? '#856404' : '#1e88e5',
                       fontWeight: 'bold',
                       fontSize: '0.85rem'
                     }}>
-                      {p.inventory == 0 ? "Out of stock" : p.inventory == 1 ? "1 item left" : `${p.inventory} in stock`}
+                      {p.inventory === 0 ? "Out of stock" : p.inventory === 1 ? "1 item left" : `${p.inventory} in stock`}
                     </span>
                   </td>
                   <td>{p.suggestedPrice ? `₹${p.suggestedPrice.toFixed(2)}` : "N/A"}</td>
                   <td>
-                    <button 
-                      className="btn-sm-modern" 
+                    <button
+                      className="btn-sm-modern"
                       onClick={() => handleSale(p.id)}
-                      disabled={p.inventory == 0}
-                      style={{ opacity: p.inventory == 0 ? 0.5 : 1, cursor: p.inventory == 0 ? 'not-allowed' : 'pointer' }}
+                      disabled={p.inventory === 0}
+                      style={{ opacity: p.inventory === 0 ? 0.5 : 1, cursor: p.inventory === 0 ? 'not-allowed' : 'pointer' }}
                     >
                       Sell 1
                     </button>
