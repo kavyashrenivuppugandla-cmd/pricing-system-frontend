@@ -10,13 +10,10 @@ function getCategory(productName) {
   const name = productName.toLowerCase();
 
   const keywordMap = {
-
     Electronics: ["laptop", "ipad", "mobile", "headset", "tv", "ac"],
     Fashion: ["shoes", "shirt", "jeans", "dress"],
     Groceries: ["milk", "bread", "chocolate", "rice"],
     Furniture: ["table", "chair", "sofa", "bed"],
-    
-
   };
 
   for (const category in keywordMap) {
@@ -40,11 +37,10 @@ function PricingDashboard() {
         products.forEach(p => {
           const category = getCategory(p.name);
           const revenue = (p.suggestedPrice || p.basePrice) * p.inventory;
-
           categoryMap[category] = (categoryMap[category] || 0) + revenue;
         });
 
-
+        // Filter and map to chart data
         const chartData = Object.keys(categoryMap)
           .filter(cat => cat !== "Miscellaneous")
           .map(cat => ({
@@ -52,22 +48,12 @@ function PricingDashboard() {
             value: categoryMap[cat]
           }));
 
-        const chartData = Object.keys(categoryMap).map(cat => ({
-          name: cat,
-          value: categoryMap[cat]
-        }));
-
-
         setData(chartData);
       })
       .catch(err => console.error("Failed to fetch products", err));
   }, []);
 
-  const COLORS = [
-    "#46be9c", "#5328ff", "#ff6842",
-
-    "#ee1023", "#2ca02c", "#d62728"
-  ];
+  const COLORS = ["#46be9c", "#5328ff", "#ff6842", "#ee1023", "#2ca02c", "#d62728"];
 
   return (
     <div className="add-product-container">
@@ -92,32 +78,6 @@ function PricingDashboard() {
           <Legend />
         </PieChart>
       </div>
-
-     "#ee1023", "#2ca02c", "#d62728"
-  ];
-
-  return (
-    <div className="container mt-3">
-      <h3>Pricing Dashboard</h3>
-      <PieChart width={700} height={500}>
-        <Pie
-          data={data}
-          cx={350}
-          cy={250}
-          labelLine={false}
-          label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-          outerRadius={200}
-          fill="#8884d8"
-          dataKey="value"
-        >
-          {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-        <Tooltip />
-        <Legend />
-      </PieChart>
-
     </div>
   );
 }
