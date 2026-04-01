@@ -266,7 +266,6 @@ function ProductList() {
           ))}
         </tbody>
       </table>
-
     </div>
   );
 }
