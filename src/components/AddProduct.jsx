@@ -43,7 +43,6 @@ function AddProduct() {
   };
 
   return (
-
     <div className="add-product-container">
       <div className="add-product-card">
         <h2 className="add-product-header">📦 Add New Product</h2>
