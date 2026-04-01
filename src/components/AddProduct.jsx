@@ -43,6 +43,7 @@ function AddProduct() {
   };
 
   return (
+<<<<<<< HEAD
     <div className="add-product-container">
       <div className="add-product-card">
         <h2 className="add-product-header">📦 Add New Product</h2>
@@ -91,6 +92,42 @@ function AddProduct() {
           </button>
         </form>
       </div>
+=======
+    <div className="container mt-4">
+      <h2>Add Product</h2>
+      <form onSubmit={submitProduct}>
+        <input
+          type="text"
+          name="name"
+          value={product.name}
+          placeholder="Product Name"
+          className="form-control mb-2"
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="number"
+          name="basePrice"
+          value={product.basePrice}
+          placeholder="Base Price"
+          className="form-control mb-2"
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="number"
+          name="inventory"
+          value={product.inventory}
+          placeholder="Inventory"
+          className="form-control mb-2"
+          onChange={handleChange}
+          required
+        />
+        <button className="btn btn-primary" type="submit">
+          Add Product
+        </button>
+      </form>
+>>>>>>> 882b4c8 (first commit)
     </div>
   );
 }

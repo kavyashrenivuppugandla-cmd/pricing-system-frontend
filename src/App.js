@@ -1,14 +1,24 @@
+<<<<<<< HEAD
 
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+=======
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+>>>>>>> 882b4c8 (first commit)
 import ProductList from "./components/ProductList";
 import AddProduct from "./components/AddProduct";
 import PricingDashboard from "./components/PricingDashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
+<<<<<<< HEAD
 import "./App.css";
+=======
+>>>>>>> 882b4c8 (first commit)
 
 function App() {
+
   return (
+<<<<<<< HEAD
     <Router>
       <div className="app-container">
         {/* Sidebar */}
@@ -53,7 +63,25 @@ function App() {
         </div>
       </div>
     </Router>
+=======
+
+    <div>
+
+      <h1 className="text-center mt-3">
+        Dynamic Pricing Recommendation System
+      </h1>
+      <Router>
+        <Routes>
+          <Route path="/" element={<AddProduct />} />
+          <Route path="/products" element={<ProductList />} />
+          <Route path="/analytics" element={<PricingDashboard />} />
+        </Routes>
+      </Router>
+    </div>
+
+>>>>>>> 882b4c8 (first commit)
   );
+
 }
 
 export default App;

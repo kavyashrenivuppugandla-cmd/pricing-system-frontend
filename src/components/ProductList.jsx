@@ -29,6 +29,7 @@ function ProductList() {
     fetch(`http://localhost:8080/products/${id}/inventory?inventory=${newInventory}`, {
       method: "PUT"
     })
+<<<<<<< HEAD
       .then(() => {
         const product = products.find(p => p.id === id);
         if (!product) return;
@@ -42,6 +43,18 @@ function ProductList() {
         }
       })
       .catch(err => console.error("Failed to update inventory", err));
+=======
+      .then(res => res.json())
+      .then(updatedProduct => {
+        setProducts(products.map(p => p.id === id ? updatedProduct : p));
+        if (Number(updatedProduct.inventory) === 0) {
+  alert(`Out of stock: ${updatedProduct.name} is now out of stock!`);
+} else if (Number(updatedProduct.inventory) < 2) {
+  alert(`Low stock alert: ${updatedProduct.name} has only ${updatedProduct.inventory} left!`);
+}
+
+      });
+>>>>>>> 882b4c8 (first commit)
   };
 
   // Filter products by search term
@@ -65,6 +78,7 @@ function ProductList() {
   });
 
   return (
+<<<<<<< HEAD
     <div className="add-product-container" style={{ alignItems: 'flex-start' }}>
       <div className="large-card">
         <h2 className="add-product-header" style={{ textAlign: 'left', marginBottom: '25px', fontSize: '1.6rem' }}>📋 Product Inventory</h2>
@@ -175,6 +189,84 @@ function ProductList() {
           </table>
         </div>
       </div>
+=======
+    <div className="container mt-3">
+      <h3>Product List</h3>
+
+      {/* Search Bar */}
+      <input
+        type="text"
+        placeholder="Search products..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="form-control mb-3"
+      />
+
+      {/* Sort Controls */}
+      <div className="mb-3">
+        <label className="me-2">Sort by:</label>
+        <select
+          value={sortKey}
+          onChange={(e) => setSortKey(e.target.value)}
+          className="form-select d-inline-block w-auto me-2"
+        >
+          <option value="name">Name</option>
+          <option value="basePrice">Base Price</option>
+          <option value="inventory">Inventory</option>
+          <option value="suggestedPrice">Suggested Price</option>
+        </select>
+
+        <select
+          value={sortOrder}
+          onChange={(e) => setSortOrder(e.target.value)}
+          className="form-select d-inline-block w-auto"
+        >
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
+      </div>
+
+      {/* Product Table */}
+      <table className="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Base Price</th>
+            <th>Inventory</th>
+            <th>Suggested Price</th>
+            <th>Sell</th>
+            <th>Update Inventory</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sortedProducts.map((p,index) => (
+            
+            <tr key={p.id}
+            >
+              <td>{index+1}</td>
+              <td>{p.name}</td>
+              <td>{p.basePrice}</td>
+              <td>{p.inventory}</td>
+              <td>{p.suggestedPrice ? p.suggestedPrice.toFixed(2) : "N/A"}</td>
+              <td>
+                <button className="btn btn-success" onClick={() => handleSale(p.id)}>Sell</button>
+              </td>
+              <td>
+                <input
+                  type="number"
+                  defaultValue={p.inventory}
+                  onBlur={(e) => handleInventoryUpdate(p.id, e.target.value)}
+                  className="form-control"
+                  style={{ width: "100px" }}
+                />
+              </td>
+
+            </tr>
+          ))}
+        </tbody>
+      </table>
+>>>>>>> 882b4c8 (first commit)
     </div>
   );
 }

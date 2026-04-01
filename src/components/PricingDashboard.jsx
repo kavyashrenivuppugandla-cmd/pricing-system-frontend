@@ -10,11 +10,18 @@ function getCategory(productName) {
   const name = productName.toLowerCase();
 
   const keywordMap = {
+<<<<<<< HEAD
     Electronics: ["laptop", "ipad", "mobile", "headset", "tv", "ac"],
     Fashion: ["shoes", "shirt", "jeans", "dress"],
     Groceries: ["milk", "bread", "chocolate", "rice"],
     Furniture: ["table", "chair", "sofa", "bed"],
     Stationery: ["pen", "pencil", "notebook", "eraser"]
+=======
+    Electronics: ["laptop", "ipad", "mobile", "headset", "tv"],
+    Fashion: ["shoes", "shirt", "jeans", "dress"],
+    Groceries: ["milk", "bread", "chocolate", "rice"],
+    Furniture: ["table", "chair", "sofa", "bed"]
+>>>>>>> 882b4c8 (first commit)
   };
 
   for (const category in keywordMap) {
@@ -42,12 +49,19 @@ function PricingDashboard() {
           categoryMap[category] = (categoryMap[category] || 0) + revenue;
         });
 
+<<<<<<< HEAD
         const chartData = Object.keys(categoryMap)
           .filter(cat => cat !== "Miscellaneous")
           .map(cat => ({
             name: cat,
             value: categoryMap[cat]
           }));
+=======
+        const chartData = Object.keys(categoryMap).map(cat => ({
+          name: cat,
+          value: categoryMap[cat]
+        }));
+>>>>>>> 882b4c8 (first commit)
 
         setData(chartData);
       })
@@ -56,6 +70,7 @@ function PricingDashboard() {
 
   const COLORS = [
     "#46be9c", "#5328ff", "#ff6842",
+<<<<<<< HEAD
     "#ee1023", "#2ca02c", "#d62728"
   ];
 
@@ -82,6 +97,32 @@ function PricingDashboard() {
           <Legend />
         </PieChart>
       </div>
+=======
+     "#ee1023", "#2ca02c", "#d62728"
+  ];
+
+  return (
+    <div className="container mt-3">
+      <h3>Pricing Dashboard</h3>
+      <PieChart width={700} height={500}>
+        <Pie
+          data={data}
+          cx={350}
+          cy={250}
+          labelLine={false}
+          label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+          outerRadius={200}
+          fill="#8884d8"
+          dataKey="value"
+        >
+          {data.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+        </Pie>
+        <Tooltip />
+        <Legend />
+      </PieChart>
+>>>>>>> 882b4c8 (first commit)
     </div>
   );
 }
