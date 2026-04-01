@@ -1,24 +1,23 @@
-<<<<<<< HEAD
+
 
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-=======
+
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
->>>>>>> 882b4c8 (first commit)
+
 import ProductList from "./components/ProductList";
 import AddProduct from "./components/AddProduct";
 import PricingDashboard from "./components/PricingDashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
-<<<<<<< HEAD
+
 import "./App.css";
-=======
->>>>>>> 882b4c8 (first commit)
+
 
 function App() {
 
   return (
-<<<<<<< HEAD
+
     <Router>
       <div className="app-container">
         {/* Sidebar */}
@@ -63,7 +62,7 @@ function App() {
         </div>
       </div>
     </Router>
-=======
+
 
     <div>
 
@@ -79,7 +78,7 @@ function App() {
       </Router>
     </div>
 
->>>>>>> 882b4c8 (first commit)
+
   );
 
 }
