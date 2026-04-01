@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://pricing-system-backend.onrender.com/:path*"
+    }
+  ]
+}
