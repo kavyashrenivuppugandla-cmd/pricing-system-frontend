@@ -9,8 +9,6 @@ import {
   Legend,
   CartesianGrid
 } from "recharts";
-
-
 // ✅ Auto-categorization function
 
 function getCategory(productName) {
