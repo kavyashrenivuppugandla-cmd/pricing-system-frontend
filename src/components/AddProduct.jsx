@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import axios from "axios";  
 import { useNavigate } from "react-router-dom"; 
 
@@ -10,14 +10,15 @@ function AddProduct() {
   });
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setProduct({
-      ...product,
-      [e.target.name]: e.target.value
-    });
-  };
+  const handleChange = useCallback((e) => {
+    const { name, value } = e.target;
+    setProduct(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  }, []);
 
-  const submitProduct = (e) => {
+  const submitProduct = useCallback((e) => {
     e.preventDefault();
     fetch("http://localhost:8080/products")
     .then(res => res.json())
@@ -38,7 +39,7 @@ function AddProduct() {
       });
       }
     });
-  };
+  }, [product, navigate]);
 
   return (
     <div className="add-product-container">

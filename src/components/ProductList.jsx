@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -10,12 +10,19 @@ function ProductList() {
     fetch("http://localhost:8080/products")
       .then(res => res.json())
       .then(data => {
-        const unique = Array.isArray(data)
-          ? data.filter((item, index, self) =>
-            index === self.findIndex(p => p.name === item.name)
-          )
-          : [];
-        setProducts(unique);
+        if (!Array.isArray(data)) {
+          setProducts([]);
+          return;
+        }
+        
+        // Efficient O(N) uniqueness check using a Map
+        const uniqueMap = new Map();
+        data.forEach(p => {
+          if (p && p.name) {
+            uniqueMap.set(p.name, p);
+          }
+        });
+        setProducts(Array.from(uniqueMap.values()));
       })
       .catch(() => setProducts([]));
   }, []);
@@ -41,25 +48,29 @@ function ProductList() {
       .catch(err => console.error("Failed to update inventory", err));
   };
 
-  // Filter products by search term
-  const filteredProducts = products.filter(p =>
-    p.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Memoized filtering
+  const filteredProducts = useMemo(() => {
+    return products.filter(p =>
+      p.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [products, searchTerm]);
 
-  // Sort products by selected key and order
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    let valA = a[sortKey];
-    let valB = b[sortKey];
+  // Memoized sorting
+  const sortedProducts = useMemo(() => {
+    return [...filteredProducts].sort((a, b) => {
+      let valA = a[sortKey];
+      let valB = b[sortKey];
 
-    if (typeof valA === "string") {
-      valA = valA.toLowerCase();
-      valB = valB.toLowerCase();
-    }
+      if (typeof valA === "string") {
+        valA = valA.toLowerCase();
+        valB = valB.toLowerCase();
+      }
 
-    if (valA < valB) return sortOrder === "asc" ? -1 : 1;
-    if (valA > valB) return sortOrder === "asc" ? 1 : -1;
-    return 0;
-  });
+      if (valA < valB) return sortOrder === "asc" ? -1 : 1;
+      if (valA > valB) return sortOrder === "asc" ? 1 : -1;
+      return 0;
+    });
+  }, [filteredProducts, sortKey, sortOrder]);
 
   return (
     <div className="add-product-container" style={{ alignItems: 'flex-start' }}>
@@ -72,6 +83,7 @@ function ProductList() {
           <div style={{ flex: 1, maxWidth: '400px' }}>
             <input
               type="text"
+              name="search"
               placeholder="🔍 Search products by name..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -84,6 +96,7 @@ function ProductList() {
           <div className="toolbar-group">
             <span className="modern-label" style={{ marginBottom: 0, marginRight: '5px' }}>Sort by:</span>
             <select
+              name="sortKey"
               value={sortKey}
               onChange={(e) => setSortKey(e.target.value)}
               className="modern-select"
@@ -95,6 +108,7 @@ function ProductList() {
             </select>
 
             <select
+              name="sortOrder"
               value={sortOrder}
               onChange={(e) => setSortOrder(e.target.value)}
               className="modern-select"
@@ -152,6 +166,7 @@ function ProductList() {
                   <td>
                     <input
                       type="number"
+                      name={`inventory-${p.id}`}
                       defaultValue={p.inventory}
                       onBlur={(e) => handleInventoryUpdate(p.id, Math.max(0, Number(e.target.value)))}
                       className="modern-input"

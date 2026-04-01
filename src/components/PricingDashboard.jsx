@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
 // Auto-categorization function
@@ -26,32 +26,37 @@ function getCategory(productName) {
 }
 
 function PricingDashboard() {
-  const [data, setData] = useState([]);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:8080/products")
       .then(res => res.json())
-      .then(products => {
-        const categoryMap = {};
-
-        products.forEach(p => {
-          const category = getCategory(p.name);
-          const revenue = (p.suggestedPrice || p.basePrice) * p.inventory;
-          categoryMap[category] = (categoryMap[category] || 0) + revenue;
-        });
-
-        // Filter and map to chart data
-        const chartData = Object.keys(categoryMap)
-          .filter(cat => cat !== "Miscellaneous")
-          .map(cat => ({
-            name: cat,
-            value: categoryMap[cat]
-          }));
-
-        setData(chartData);
+      .then(data => {
+        if (Array.isArray(data)) {
+          setProducts(data);
+        }
       })
       .catch(err => console.error("Failed to fetch products", err));
   }, []);
+
+  // Memoized chart data calculation
+  const chartData = useMemo(() => {
+    const categoryMap = {};
+
+    products.forEach(p => {
+      const category = getCategory(p.name);
+      const revenue = (p.suggestedPrice || p.basePrice) * p.inventory;
+      categoryMap[category] = (categoryMap[category] || 0) + revenue;
+    });
+
+    // Filter and map to chart data
+    return Object.keys(categoryMap)
+      .filter(cat => cat !== "Miscellaneous")
+      .map(cat => ({
+        name: cat,
+        value: categoryMap[cat]
+      }));
+  }, [products]);
 
   const COLORS = ["#46be9c", "#5328ff", "#ff6842", "#ee1023", "#2ca02c", "#d62728"];
 
@@ -61,7 +66,7 @@ function PricingDashboard() {
         <h2 className="add-product-header" style={{ marginBottom: '30px', textAlign: 'center' }}>📊 Pricing Analytics Dashboard</h2>
         <PieChart width={700} height={500}>
           <Pie
-            data={data}
+            data={chartData}
             cx={350}
             cy={250}
             labelLine={false}
@@ -70,7 +75,7 @@ function PricingDashboard() {
             fill="#8884d8"
             dataKey="value"
           >
-            {data.map((entry, index) => (
+            {chartData.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
           </Pie>
